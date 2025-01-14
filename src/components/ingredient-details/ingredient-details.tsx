@@ -1,13 +1,16 @@
 import { FC } from 'react';
-import { Preloader } from '../ui/preloader';
+import { useParams } from 'react-router-dom';
+import { useSelector } from '../../services/store';
 import { IngredientDetailsUI } from '../ui/ingredient-details';
 
 export const IngredientDetails: FC = () => {
-  /** TODO: взять переменную из стора */
-  const ingredientData = null;
+  const { id } = useParams<{ id: string }>();
+  const ingredientData = useSelector((state) =>
+    state.ingredients.items.find((ingredient) => ingredient._id === id)
+  );
 
   if (!ingredientData) {
-    return <Preloader />;
+    return <div>Ингредиент не найден</div>;
   }
 
   return <IngredientDetailsUI ingredientData={ingredientData} />;
