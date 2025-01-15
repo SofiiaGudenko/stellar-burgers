@@ -8,6 +8,7 @@ import {
   fetchAllOrders
 } from '../../services/slices/orderSlice';
 import { TIngredient, TOrder } from '@utils-types';
+import { Modal } from '../modal/modal';
 
 export const OrderInfo: FC = () => {
   const dispatch = useDispatch();

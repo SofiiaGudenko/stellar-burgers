@@ -14,7 +14,13 @@ import { useEffect } from 'react';
 import { useDispatch } from '../../services/store';
 import { fetchIngredients } from '../../services/slices/inrgedientsActions';
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  useParams
+} from 'react-router-dom';
 import { ProtectedRoute } from '../protected-route/protected-route';
 import { checkAuth } from '../../services/slices/authSlice';
 
@@ -31,7 +37,20 @@ const App = () => {
   const navigate = useNavigate();
 
   const closeModal = () => {
-    navigate(-1);
+    if (backgroundLocation) {
+      navigate(backgroundLocation.pathname);
+    } else {
+      navigate(-1);
+    }
+  };
+
+  const OrderModal = () => {
+    const { number } = useParams<{ number: string }>();
+    return (
+      <Modal title={`#${number}`} onClose={closeModal}>
+        <OrderInfo />
+      </Modal>
+    );
   };
 
   return (
@@ -86,7 +105,7 @@ const App = () => {
         <Route
           path='/profile/orders/:number'
           element={
-            <ProtectedRoute onlyForAuth>
+            <ProtectedRoute>
               <OrderInfo />
             </ProtectedRoute>
           }
@@ -102,21 +121,12 @@ const App = () => {
               </Modal>
             }
           />
-          <Route
-            path='/feed/:number'
-            element={
-              <Modal title='Информация о заказе' onClose={closeModal}>
-                <OrderInfo />
-              </Modal>
-            }
-          />
+          <Route path='/feed/:number' element={<OrderModal />} />
           <Route
             path='/profile/orders/:number'
             element={
               <ProtectedRoute onlyForAuth>
-                <Modal title='Информация о заказе' onClose={closeModal}>
-                  <OrderInfo />
-                </Modal>
+                <OrderModal />
               </ProtectedRoute>
             }
           />

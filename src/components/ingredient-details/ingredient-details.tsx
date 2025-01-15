@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useSelector } from '../../services/store';
 import { IngredientDetailsUI } from '../ui/ingredient-details';
 
@@ -9,9 +9,14 @@ export const IngredientDetails: FC = () => {
     state.ingredients.items.find((ingredient) => ingredient._id === id)
   );
 
+  const location = useLocation();
+  const isModal = !!location.state?.backgroundLocation;
+
   if (!ingredientData) {
     return <div>Ингредиент не найден</div>;
   }
 
-  return <IngredientDetailsUI ingredientData={ingredientData} />;
+  return (
+    <IngredientDetailsUI ingredientData={ingredientData} isModal={isModal} />
+  );
 };
