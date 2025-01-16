@@ -162,7 +162,7 @@ export type TLoginData = {
   password: string;
 };
 
-export const loginUserApi = (data: TLoginData) =>
+export const loginUserApi = (data: TLoginData, p0: { rejectWithValue: any }) =>
   fetch(`${URL}/auth/login`, {
     method: 'POST',
     headers: {
