@@ -24,16 +24,25 @@ const burgerConstructorSlice = createSlice({
       state.ingredients.push(action.payload);
     },
     removeIngredient(state, action: PayloadAction<number>) {
-      state.ingredients.splice(action.payload, 1);
+      if (action.payload >= 0 && action.payload < state.ingredients.length) {
+        state.ingredients.splice(action.payload, 1);
+      }
     },
     moveIngredient(
       state,
       action: PayloadAction<{ fromIndex: number; toIndex: number }>
     ) {
       const { fromIndex, toIndex } = action.payload;
-      const ingredient = state.ingredients[fromIndex];
-      state.ingredients.splice(fromIndex, 1);
-      state.ingredients.splice(toIndex, 0, ingredient);
+      if (
+        fromIndex >= 0 &&
+        fromIndex < state.ingredients.length &&
+        toIndex >= 0 &&
+        toIndex < state.ingredients.length
+      ) {
+        const ingredient = state.ingredients[fromIndex];
+        state.ingredients.splice(fromIndex, 1);
+        state.ingredients.splice(toIndex, 0, ingredient);
+      }
     },
 
     updateTotalPrice(state) {
