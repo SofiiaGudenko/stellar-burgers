@@ -11,10 +11,16 @@ describe('Добавление ингредиента из списка ингр
     cy.get('[data-cy=constructor-bun-2]').contains('Булка').should('exist');
   });
 
-  it('Открытие модального окна при клике на ингредиент и закрытие его по нажатию на кнопку закрытия', () => {
+  it('Открытие модального окна при клике на ингредиент и его закрытие', () => {
     cy.get('[data-cy=ingredient-item]').first().click();
     cy.get('[data-cy=modal]').should('be.visible');
     cy.get('[data-cy=modal-close-button]').click();
+    cy.get('[data-cy=modal]').should('not.exist');
+
+    cy.get('[data-cy=ingredient-item]').first().click();
+    cy.get('[data-cy=modal]').should('be.visible');
+
+    cy.get('[data-cy=modal-overlay]').click('left', { force: true });
     cy.get('[data-cy=modal]').should('not.exist');
   });
 
@@ -91,5 +97,10 @@ describe('Процесс создания заказа', () => {
 
     cy.get('[data-cy=modal-close-button]').click();
     cy.get('[data-cy=modal]').should('not.exist');
+
+    cy.get('[data-cy=constructor-bun-1]').should('not.exist');
+    cy.get('[data-cy=constructor]').contains('Котлета').should('not.exist');
+    cy.get('[data-cy=constructor]').contains('Соус').should('not.exist');
+    cy.get('[data-cy=constructor-bun-2]').should('not.exist');
   });
 });

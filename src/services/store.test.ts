@@ -6,11 +6,35 @@ describe('rootReducer', () => {
     const initialState = rootReducer(undefined, action);
 
     expect(initialState).toEqual({
-      ingredients: expect.any(Object),
-      burgerConstructor: expect.any(Object),
-      auth: expect.any(Object),
-      order: expect.any(Object),
-      feeds: expect.any(Object)
+      ingredients: {
+        items: [],
+        loading: false,
+        error: null
+      },
+      burgerConstructor: {
+        bun: null,
+        ingredients: [],
+        totalPrice: 0
+      },
+      auth: {
+        user: null,
+        isAuthenticated: false,
+        isLoading: false,
+        error: null
+      },
+      order: {
+        orders: [],
+        orderData: null,
+        loading: false,
+        error: null
+      },
+      feeds: {
+        orders: [],
+        isLoading: false,
+        error: null,
+        total: 0,
+        totalToday: 0
+      }
     });
   });
 });

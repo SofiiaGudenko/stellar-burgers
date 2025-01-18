@@ -100,4 +100,31 @@ describe('Тесты для burgerConstructorSlice', () => {
     const state = reducer(stateWithData, action);
     expect(state).toEqual(initialState);
   });
+
+  // Граничные случаи
+
+  it('Обрабатывает удаление ингредиента из пустого конструктора', () => {
+    const action = removeIngredient(0);
+    const state = reducer(initialState, action);
+    expect(state).toEqual(initialState);
+  });
+
+  it('Обрабатывает перемещение ингредиента с неверными индексами', () => {
+    const stateWithIngredients = {
+      ...initialState,
+      ingredients: [
+        { ...mockIngredient, _id: '1', name: 'Ingredient 1' },
+        { ...mockIngredient, _id: '2', name: 'Ingredient 2' }
+      ]
+    };
+    const action = moveIngredient({ fromIndex: -1, toIndex: 6 });
+    const state = reducer(stateWithIngredients, action);
+    expect(state.ingredients).toEqual(stateWithIngredients.ingredients);
+  });
+
+  it('Обрабатывает добавление ингредиента в пустой конструктор', () => {
+    const action = addIngredient(mockIngredient);
+    const state = reducer(initialState, action);
+    expect(state.ingredients).toEqual([mockIngredient]);
+  });
 });
