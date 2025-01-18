@@ -1,0 +1,47 @@
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "1",
+      "name": "Булка",
+      "type": "bun",
+      "proteins": 80,
+      "fat": 24,
+      "carbohydrates": 53,
+      "calories": 420,
+      "price": 1255,
+      "image": "https://code.s3.yandex.net/react/code/bun-02.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/bun-02-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/bun-02-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "2",
+      "name": "Котлета",
+      "type": "main",
+      "proteins": 120,
+      "fat": 35,
+      "carbohydrates": 15,
+      "calories": 650,
+      "price": 300,
+      "image": "https://code.s3.yandex.net/react/code/meat-01.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/meat-01-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/meat-01-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "3",
+      "name": "Соус",
+      "type": "sauce",
+      "proteins": 5,
+      "fat": 10,
+      "carbohydrates": 20,
+      "calories": 150,
+      "price": 90,
+      "image": "https://code.s3.yandex.net/react/code/sauce-02.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/sauce-02-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/sauce-02-large.png",
+      "__v": 0
+    }
+  ]
+}

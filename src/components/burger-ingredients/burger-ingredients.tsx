@@ -51,9 +51,6 @@ export const BurgerIngredients: FC = () => {
       titleSaucesRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  if (loading) return <div>Загрузка ингредиентов...</div>;
-  if (error) return <div>Ошибка загрузки ингредиентов</div>;
-
   return (
     <BurgerIngredientsUI
       currentTab={currentTab}
