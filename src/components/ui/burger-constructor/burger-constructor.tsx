@@ -37,7 +37,10 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
       {constructorItems.bun &&
       constructorItems.bun.name &&
       constructorItems.bun.image ? (
-        <div className={`${styles.element} mb-4 mr-4`}>
+        <div
+          className={`${styles.element} mb-4 mr-4`}
+          data-cy='constructor-bun-1'
+        >
           <ConstructorElement
             type='top'
             isLocked
@@ -53,7 +56,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
           Выберите булки
         </div>
       )}
-      <ul className={styles.elements}>
+      <ul className={styles.elements} data-cy='constructor'>
         {constructorItems.ingredients.length > 0 ? (
           constructorItems.ingredients.map(
             (item: TConstructorIngredient, index: number) => (
@@ -76,7 +79,10 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
       {constructorItems.bun &&
       constructorItems.bun.name &&
       constructorItems.bun.image ? (
-        <div className={`${styles.element} mt-4 mr-4`}>
+        <div
+          className={`${styles.element} mt-4 mr-4`}
+          data-cy='constructor-bun-2'
+        >
           <ConstructorElement
             type='bottom'
             isLocked
@@ -97,13 +103,15 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
           <p className={`text ${styles.text} mr-2`}>{price}</p>
           <CurrencyIcon type='primary' />
         </div>
-        <Button
-          htmlType='button'
-          type='primary'
-          size='large'
-          children='Оформить заказ'
-          onClick={handleOrderClick}
-        />
+        <div data-cy='place-order-button'>
+          <Button
+            htmlType='button'
+            type='primary'
+            size='large'
+            children='Оформить заказ'
+            onClick={handleOrderClick}
+          />
+        </div>
       </div>
 
       {orderRequest && (
